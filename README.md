@@ -13,7 +13,7 @@ pip install -r requirements.txt
 
 ### Setup
 
-Creating a file `.env' in the project's root containing an API key for OpenAI is mandatory.
+Creating a file `.env` in the project's root containing an API key for OpenAI is mandatory.
 
 ```
 OPEN_AI_KEY=<our_key>
