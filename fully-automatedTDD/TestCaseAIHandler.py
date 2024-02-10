@@ -103,13 +103,11 @@ class TestCaseAIHandler():
             file.write(text2save)
 
     def clean_code(self):
-        print(self.messages_received_parsed_code)
         code = self.messages_received_parsed_code[-1][0].split("\n")
         result = []
         for idx in range(len(code)):
             line = code[idx]
             if not line.startswith("from"):
-                print(str(idx)+"_"+line)
                 result.append(line)
 
         return "\n".join(result)
@@ -132,15 +130,11 @@ class TestCaseAIHandler():
         # message = response
         self.messages_received.append(message)
         self.messages_received_parsed_code.append(self._parse_message(message))
-        print(self.messages_received_parsed_code[-1])
-        print("---- msg recieved")
-
+        
         path = self.folder + "/" + self.get_base_filename_for_context() + "_response_tester.txt"
         self.save_to_file(message, path)
 
         code = self.clean_code()
-        print(code)
-        print("---- code cleaned")
         path = self.folder + "/" + self.get_base_filename_for_context() + ".py"
 
         self.save_to_file(reshuffle_code(code, self.folder + "/" + self.get_last_test_case_path()), path)
