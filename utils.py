@@ -42,14 +42,14 @@ def read_file(path):
             # Print the contents
             return contents
 
-def reshuffle_code(code, path):
+def reshuffle_code(code, path=None):
     classes = extract_classes(code)
 
     result = []
     productionCode = list(filter(lambda x: x["testCase"] == False, classes))
     testCases = list(filter(lambda x: x["testCase"] == True, classes))
 
-    if len(productionCode) == 0:
+    if len(productionCode) == 0 and path is not None:
         old_code = read_file(path)
         if old_code is not None:
             classes_old = extract_classes(old_code)
