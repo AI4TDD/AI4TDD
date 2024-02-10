@@ -142,7 +142,6 @@ class TestCaseAIHandler():
         print("Generated test case is stored in file: " + path)
 
     def save_to_file(self, message, path):
-        print(message)
         file_opener = open(path, 'w')
         file_opener.writelines(message)
         file_opener.close()
