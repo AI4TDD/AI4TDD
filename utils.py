@@ -35,11 +35,12 @@ def str2bool(v):
 
 def read_file(path):
     # Open the file in read mode
-    with open(path, 'r') as file:
-        # Read the contents of the file
-        contents = file.read()
-        # Print the contents
-        return contents
+    if os.path.exists(path):
+        with open(path, 'r') as file:
+            # Read the contents of the file
+            contents = file.read()
+            # Print the contents
+            return contents
 
 def reshuffle_code(code, path):
     classes = extract_classes(code)
@@ -50,8 +51,9 @@ def reshuffle_code(code, path):
 
     if len(productionCode) == 0:
         old_code = read_file(path)
-        classes_old = extract_classes(old_code)
-        productionCode = list(filter(lambda x: x["testCase"] == False, classes_old))
+        if old_code is not None:
+            classes_old = extract_classes(old_code)
+            productionCode = list(filter(lambda x: x["testCase"] == False, classes_old))
 
     [result.append(element["class"]) for element in productionCode]
     result.append("import unittest\n")
