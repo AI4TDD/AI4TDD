@@ -57,14 +57,16 @@ def arg_parser():
 
 if __name__ == '__main__':
     args = arg_parser()
+    prompt = 'Use the Assertion First pattern in TDD and stub and drivers to develop the first barely minimal test and production code for the feature “{}" with {}. Do not provide a solution for other input classes'
 
     if args.command == INTERACTIVE:
         print('The first step is to create the first test.\n')
         incorrect_test_cases_created = 0 # workaround for issues with the test case should be redone
         while True:
-            prompt = input('What is the prompt to generate the test?\n')
+            feature = input('What is the feature description?\n')
+            values = input('What is/are the parameter(s) description? (e.g. width=10 and word="word")\n')
 
-            runner = Runner(prompt, CREATE_TEST_CASE, args.print_message, args.pass_file, args.folder, args.generic_production_code_prompt_enhancement, incorrect_test_cases_created)
+            runner = Runner(prompt.format(feature, values), CREATE_TEST_CASE, args.print_message, args.pass_file, args.folder, args.generic_production_code_prompt_enhancement, incorrect_test_cases_created)
             runner.run()
 
             print('Please, check the generated test case.\n')
@@ -77,6 +79,7 @@ if __name__ == '__main__':
                 if next_step.upper() == 'T':
                     break
                 elif next_step.upper() == 'C':
+                    prompt = prompt.replace("Use", "Keep the existing tests and add one by using")
                     incorrect_test_cases_created = 0
                     runner = Runner("", CREATE_CODE, args.print_message, None, args.folder, args.generic_production_code_prompt_enhancement)
                     runner.run()
