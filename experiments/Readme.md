@@ -1,6 +1,6 @@
 ### Experiments
 
-The archives of I1-I5 contain all the produced code by the participants.
+The archives of P1-P5 contain all the produced code by the participants.
 
 The archive F1 contains the fully automated approach.
 
