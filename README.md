@@ -29,3 +29,8 @@ In the folder [collaborativeAI](collaborativeAI), the implementation of the code
 In the folder [full-automatedTDD](fully-automatedTDD), the implementation for the full automation of TDD using the AI can be found.
 
 Both folders contain instructions on how to run the programs.
+
+
+### Obtained results
+
+All the collected data can be found in the folder [experiments](experiments).
